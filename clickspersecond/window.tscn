@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://2je5hqa1fxma"]
+
+[ext_resource type="Script" uid="uid://jq4uv5crvlrj" path="res://window.gd" id="1_mvsta"]
+[ext_resource type="Texture2D" uid="uid://btolaxmwnhx38" path="res://background.png" id="2_hjewq"]
+
+[sub_resource type="SystemFont" id="SystemFont_srjdr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nfq5s"]
+font = SubResource("SystemFont_srjdr")
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_piwyh"]
+font_size = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_o4qwj"]
+font_size = 150
+
+[sub_resource type="LabelSettings" id="LabelSettings_hjewq"]
+font_size = 150
+
+[node name="Window" type="Node2D" unique_id=275167313]
+script = ExtResource("1_mvsta")
+
+[node name="TitleScreen" type="Node2D" parent="." unique_id=567671717]
+
+[node name="Game" type="Node2D" parent="." unique_id=1459952664]
+
+[node name="StartTimer" type="Timer" parent="." unique_id=1514132063]
+wait_time = 3.0
+
+[node name="GameTimer" type="Timer" parent="." unique_id=440351649]
+wait_time = 10.0
+
+[node name="CountdownTimer" type="Timer" parent="." unique_id=1731021406]
+
+[node name="InfoLabel" type="Label" parent="." unique_id=625605025]
+z_index = 1
+offset_left = 289.0
+offset_top = 275.0
+offset_right = 927.0
+offset_bottom = 331.0
+text = "Press the key or mouse button you'll use"
+label_settings = SubResource("LabelSettings_nfq5s")
+
+[node name="KeyLabel" type="Label" parent="." unique_id=1817209144]
+z_index = 1
+offset_left = 289.0
+offset_top = 338.0
+offset_right = 927.0
+offset_bottom = 394.0
+text = "Selected key: "
+label_settings = SubResource("LabelSettings_nfq5s")
+horizontal_alignment = 1
+
+[node name="ScoreTextLabel" type="Label" parent="." unique_id=1381584700]
+z_index = 1
+offset_left = 367.0
+offset_top = 392.0
+offset_right = 815.0
+offset_bottom = 475.0
+text = "Inputs Per Second"
+label_settings = SubResource("LabelSettings_piwyh")
+
+[node name="ScoreNumberLabel" type="Label" parent="." unique_id=288388811]
+z_index = 1
+offset_left = 372.0
+offset_top = 210.0
+offset_right = 799.0
+offset_bottom = 415.0
+text = "0"
+label_settings = SubResource("LabelSettings_o4qwj")
+horizontal_alignment = 1
+
+[node name="CountdownLabel" type="Label" parent="." unique_id=1406946441]
+z_index = 1
+offset_left = 551.0
+offset_top = 212.0
+offset_right = 645.0
+offset_bottom = 417.0
+text = "3"
+label_settings = SubResource("LabelSettings_hjewq")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=575159354]
+z_index = -1
+position = Vector2(576.5, 325)
+scale = Vector2(71.9375, 72)
+texture = ExtResource("2_hjewq")
+
+[node name="BackgroundScore" type="Polygon2D" parent="." unique_id=1406679179]
+position = Vector2(-2, 658)
+scale = Vector2(1.0156521, 1)
+color = Color(0.12942478, 5.7756904e-07, 0.66225296, 1)
+polygon = PackedVector2Array(0, 0, 1150, 0, 1149.9999, -4, 1150, -9, 0, -9, 0, -4)
+
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
+[connection signal="timeout" from="CountdownTimer" to="." method="_on_countdown_timer_timeout"]
