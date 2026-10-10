@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://b8dygndlejih3"]
+
+[ext_resource type="Script" uid="uid://bv3g1v3sowp0k" path="res://game.gd" id="1_80nbo"]
+[ext_resource type="AudioStream" uid="uid://cbodcxa5dfyxn" path="res://music.mp3" id="2_e2o6t"]
+[ext_resource type="AudioStream" uid="uid://5dxtdrqq31uh" path="res://pop.mp3" id="2_feb5d"]
+[ext_resource type="Texture2D" uid="uid://btolaxmwnhx38" path="res://background.png" id="4_fc0e3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(27, 648)
+
+[sub_resource type="LabelSettings" id="LabelSettings_g4v7s"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_yf5fn"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_57qmd"]
+font_size = 100
+
+[node name="Game" type="Node2D" unique_id=1265744159]
+script = ExtResource("1_80nbo")
+
+[node name="WordSpawnTimer" type="Timer" parent="." unique_id=887756508]
+
+[node name="GameTimer" type="Timer" parent="." unique_id=1963123107]
+
+[node name="LoseArea" type="Area2D" parent="." unique_id=273834935]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LoseArea" unique_id=875609717]
+position = Vector2(-13.5, 324)
+shape = SubResource("RectangleShape2D_g4v7s")
+
+[node name="Pop" type="AudioStreamPlayer" parent="." unique_id=322530160]
+stream = ExtResource("2_feb5d")
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1610453931]
+stream = ExtResource("2_e2o6t")
+autoplay = true
+
+[node name="Background" type="Sprite2D" parent="." unique_id=357982087]
+position = Vector2(570.00006, 331.5)
+scale = Vector2(77.25001, 78.111115)
+texture = ExtResource("4_fc0e3")
+
+[node name="SpeedIncreaseTimer" type="Timer" parent="." unique_id=517276023]
+wait_time = 10.0
+
+[node name="TimeLabel" type="Label" parent="." unique_id=806783068]
+offset_left = 29.0
+offset_top = 7.0
+offset_right = 157.0
+offset_bottom = 52.0
+text = "Time: 0:00"
+label_settings = SubResource("LabelSettings_g4v7s")
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=710118645]
+offset_left = 284.0
+offset_top = 8.0
+offset_right = 405.0
+offset_bottom = 53.0
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_yf5fn")
+
+[node name="GameOverLabel" type="Label" parent="." unique_id=545393033]
+visible = false
+offset_left = 96.0
+offset_top = 154.0
+offset_right = 1062.0
+offset_bottom = 471.0
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_57qmd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="WordSpawnTimer" to="." method="_on_word_spawn_timer_timeout"]
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
+[connection signal="area_entered" from="LoseArea" to="." method="_on_lose_area_area_entered"]
+[connection signal="timeout" from="SpeedIncreaseTimer" to="." method="_on_speed_increase_timer_timeout"]

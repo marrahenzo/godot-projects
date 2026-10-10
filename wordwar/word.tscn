@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cb7q8b8lvkrtt"]
+
+[ext_resource type="Script" uid="uid://b8j0pgdbppom0" path="res://word.gd" id="1_3q3ku"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(6, 4)
+
+[node name="word" type="Area2D" unique_id=1347896355]
+script = ExtResource("1_3q3ku")
+
+[node name="text" type="RichTextLabel" parent="." unique_id=320919076]
+offset_right = 40.0
+offset_bottom = 40.0
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 0
+
+[node name="collision" type="CollisionShape2D" parent="." unique_id=432332110]
+position = Vector2(8, 0)
+shape = SubResource("RectangleShape2D_g4v7s")
